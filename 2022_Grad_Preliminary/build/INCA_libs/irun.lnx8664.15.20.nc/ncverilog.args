@@ -1,0 +1,11 @@
+//
+// File created by:  ncverilog
+// Do not modify this file
+//
+/home/ChienShaoHsuan/2022_A-JobAssignmentMachine/110_Job_Assignment_Machine/sim/tb.sv
+/home/ChienShaoHsuan/2022_A-JobAssignmentMachine/110_Job_Assignment_Machine/src/JAM.v
++incdir+/home/ChienShaoHsuan/2022_A-JobAssignmentMachine/110_Job_Assignment_Machine/src
++nc64bit
++access+r
++define+P3
++define+FSDB_FILE=\"JAM.fsdb\"
