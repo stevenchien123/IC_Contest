@@ -37,19 +37,6 @@ parameter READ_FLAT_1  = 4'd11;
 parameter WRITE_FLAT_1 = 4'd12;
 parameter FINISH       = 4'd13;
 
-// // kernal_0 & kernal_1
-// parameter kernal_0_1 = 20'h0A89E; parameter kernal_0_2 = 20'h092D5; parameter kernal_0_3 = 20'h06D43;
-// parameter kernal_0_4 = 20'h01004; parameter kernal_0_5 = 20'hF8F71; parameter kernal_0_6 = 20'hF6E54;
-// parameter kernal_0_7 = 20'hFA6D7; parameter kernal_0_8 = 20'hFC834; parameter kernal_0_9 = 20'hFAC19;
-
-// parameter kernal_1_1 = 20'hFDB55; parameter kernal_1_2 = 20'h02992; parameter kernal_1_3 = 20'hFC994;
-// parameter kernal_1_4 = 20'h050FD; parameter kernal_1_5 = 20'h02F20; parameter kernal_1_6 = 20'h0202D;
-// parameter kernal_1_7 = 20'h03BD7; parameter kernal_1_8 = 20'hFD369; parameter kernal_1_9 = 20'h05E68;
-
-// // bias_0 & bias_1
-// parameter bias_0 = 20'h01310;
-// parameter bias_1 = 20'hF7295;
-
 
 reg         [3:0] cur_state;
 reg         [3:0] nxt_state;
@@ -188,115 +175,62 @@ always @(posedge clk or posedge reset) begin
 		cur_state <= nxt_state;
 end
 
-// // kernal
-// always @(posedge clk or posedge reset) begin
-// 	if(reset)
-// 		kernal <= 20'd0;
-// 	else if(cur_state == READ_CONV_0) begin
-// 		if(counter == 4'd0)
-// 				kernal <= 20'h0A89E;
-// 			else if(counter == 4'd1)
-// 				kernal <= 20'h092D5;
-// 			else if(counter == 4'd2)
-// 				kernal <= 20'h06D43;
-// 			else if(counter == 4'd3)
-// 				kernal <= 20'h01004;
-// 			else if(counter == 4'd4)
-// 				kernal <= 20'hF8F71;
-// 			else if(counter == 4'd5)
-// 				kernal <= 20'hF6E54;
-// 			else if(counter == 4'd6)
-// 				kernal <= 20'hFA6D7;
-// 			else if(counter == 4'd7)
-// 				kernal <= 20'hFC834;
-// 			else if(counter == 4'd8)
-// 				kernal <= 20'hFAC19;
-// 	end
-// 	else if(cur_state == READ_CONV_1) begin
-// 		if(counter == 4'd0)
-// 				kernal <= 20'hFDB55;
-// 			else if(counter == 4'd1)
-// 				kernal <= 20'h02992;
-// 			else if(counter == 4'd2)
-// 				kernal <= 20'hFC994;
-// 			else if(counter == 4'd3)
-// 				kernal <= 20'h050FD;
-// 			else if(counter == 4'd4)
-// 				kernal <= 20'h02F20;
-// 			else if(counter == 4'd5)
-// 				kernal <= 20'h0202D;
-// 			else if(counter == 4'd6)
-// 				kernal <= 20'h03BD7;
-// 			else if(counter == 4'd7)
-// 				kernal <= 20'hFD369;
-// 			else if(counter == 4'd8)
-// 				kernal <= 20'h05E68;
-// 	end
-// end
-
-// // bias
-// always @(posedge clk or posedge reset) begin
-// 	if(reset)
-// 		bias <= 20'd0;
-// 	else if(cur_state == READ_CONV_0) begin
-// 		bias <= 20'h01310;
-// 	end
-// 	else if(cur_state == READ_CONV_1) begin
-// 		bias <= 20'hF7295;
-// 	end
-// end
 
 // kernal
 always @(*) begin
 	//kernal = 20'd0;
 	case (cur_state)
 		READ_CONV_0: begin
-			if(counter == 4'd1)
-				kernal = 20'h0A89E;
-			else if(counter == 4'd2)
-				kernal = 20'h092D5;
-			else if(counter == 4'd3)
-				kernal = 20'h06D43;
-			else if(counter == 4'd4)
-				kernal = 20'h01004;
-			else if(counter == 4'd5)
-				kernal = 20'hF8F71;
-			else if(counter == 4'd6)
-				kernal = 20'hF6E54;
-			else if(counter == 4'd7)
-				kernal = 20'hFA6D7;
-			else if(counter == 4'd8)
-				kernal = 20'hFC834;
-			else if(counter == 4'd9)
-				kernal = 20'hFAC19;
-			else
-				kernal = 20'd0;					
+			case(counter)
+				4'd2:
+					kernal = 20'h0A89E;
+				4'd3:
+					kernal = 20'h092D5;
+				4'd4:
+					kernal = 20'h06D43;
+				4'd5:
+					kernal = 20'h01004;
+				4'd6:
+					kernal = 20'hF8F71;
+				4'd7:
+					kernal = 20'hF6E54;
+				4'd8:
+					kernal = 20'hFA6D7;
+				4'd9:
+					kernal = 20'hFC834;
+				4'd10:
+					kernal = 20'hFAC19;
+				default:
+					kernal = 20'd0;
+			endcase
 		end
 
 		READ_CONV_1: begin
-			if(counter == 4'd1)
-				kernal = 20'hFDB55;
-			else if(counter == 4'd2)
-				kernal = 20'h02992;
-			else if(counter == 4'd3)
-				kernal = 20'hFC994;
-			else if(counter == 4'd4)
-				kernal = 20'h050FD;
-			else if(counter == 4'd5)
-				kernal = 20'h02F20;
-			else if(counter == 4'd6)
-				kernal = 20'h0202D;
-			else if(counter == 4'd7)
-				kernal = 20'h03BD7;
-			else if(counter == 4'd8)
-				kernal = 20'hFD369;
-			else if(counter == 4'd9)
-				kernal = 20'h05E68;
-			else
-				kernal = 20'd0;	
+			case(counter)
+				4'd2:
+					kernal = 20'hFDB55;
+				4'd3:
+					kernal = 20'h02992;
+				4'd4:
+					kernal = 20'hFC994;
+				4'd5:
+					kernal = 20'h050FD;
+				4'd6:
+					kernal = 20'h02F20;
+				4'd7:
+					kernal = 20'h0202D;
+				4'd8:
+					kernal = 20'h03BD7;
+				4'd9:
+					kernal = 20'hFD369;
+				4'd10:
+					kernal = 20'h05E68;
+				default:
+					kernal = 20'd0;
+			endcase
 		end
 		default: begin
-			kernal = 20'd0;			
+			kernal = 20'd0;
 		end
 	endcase
 end
@@ -313,7 +247,7 @@ always @(*) begin
 			bias = 20'hF7295;
 		end
 		default: begin
-			bias = 20'd0;			
+			bias = 20'd0;
 		end
 	endcase
 end
@@ -322,49 +256,40 @@ end
 always @(posedge clk or posedge reset) begin
 	if(reset)
 		x <= 6'd0;
-	else begin
-		if(cur_state == WRITE_CONV_0 || cur_state == WRITE_CONV_1)								// Accumulate by 1
-		   begin
-				if(x == 6'd63)
-					x <= 6'd0;
-				else
-					x <= x + 6'd1;
-		   end
-			
-		else if(cur_state == WRITE_MAX_0  || cur_state == WRITE_MAX_1 ||
-				cur_state == WRITE_FLAT_0 || cur_state == WRITE_FLAT_1)							// Accumulate by 2
-			begin
-				if(x == 6'd62)
-					x <= 6'd0;
-				else
-					x <= x + 6'd2;
-			end
-			
+	else if(cur_state == WRITE_CONV_0 || cur_state == WRITE_CONV_1)								// Accumulate by 1
+	begin
+		if(x == 6'd63)
+			x <= 6'd0;
+		else
+			x <= x + 6'd1;
 	end
+			
+	else if(cur_state == WRITE_MAX_0  || cur_state == WRITE_MAX_1 ||
+			cur_state == WRITE_FLAT_0 || cur_state == WRITE_FLAT_1)								// Accumulate by 2
+	begin
+		if(x == 6'd62)
+			x <= 6'd0;
+		else
+			x <= x + 6'd2;
+	end
+			
 end
 
 // y
 always @(posedge clk or posedge reset) begin
 	if(reset)
 		y <= 6'd0;
-	else begin
-		if(cur_state == WRITE_CONV_0 || cur_state == WRITE_CONV_1)								// Accumulate by 1
-		   begin
-				if(x == 6'd63)
-					y <= y + 6'd1;
-		   end
+	else if(cur_state == WRITE_CONV_0 || cur_state == WRITE_CONV_1)								// Accumulate by 1
+	begin
+		if(x == 6'd63)
+			y <= y + 6'd1;
+	end
 			
-		else if(cur_state == WRITE_MAX_0  || cur_state == WRITE_MAX_1 ||
-				cur_state == WRITE_FLAT_0 || cur_state == WRITE_FLAT_1)							// Accumulate by 2
-			begin
-				if(x == 6'd62)
-					y <= y + 6'd2;
-			end
-		// else if(cur_state == WRITE_FLAT_0 || cur_state == WRITE_FLAT_1)
-		// 	begin
-		// 		if(x == 6'd62)
-		// 			y <= y + 6'd1;
-		// 	end
+	else if(cur_state == WRITE_MAX_0  || cur_state == WRITE_MAX_1 ||
+			cur_state == WRITE_FLAT_0 || cur_state == WRITE_FLAT_1)								// Accumulate by 2
+	begin
+		if(x == 6'd62)
+			y <= y + 6'd2;
 	end
 end
 
@@ -421,24 +346,26 @@ always @(posedge clk or posedge reset) begin
 	if(reset)
 		iaddr <= 12'd0;
 	else if(cur_state == READ_CONV_0 || cur_state == READ_CONV_1) begin
-		if(counter == 4'd0)
-			iaddr <= {y_before, x_before};
-		else if(counter == 4'd1)
-			iaddr <= {y_before, x};
-		else if(counter == 4'd2)
-			iaddr <= {y_before, x_after};
-		else if(counter == 4'd3)
-			iaddr <= {y, x_before};
-		else if(counter == 4'd4)
-			iaddr <= {y, x};
-		else if(counter == 4'd5)
-			iaddr <= {y, x_after};
-		else if(counter == 4'd6)
-			iaddr <= {y_after, x_before};
-		else if(counter == 4'd7)
-			iaddr <= {y_after, x};
-		else if(counter == 4'd8)
-			iaddr <= {y_after, x_after};
+		case(counter)
+			4'd0:
+				iaddr <= {y_before, x_before};
+			4'd1:
+				iaddr <= {y_before, x};
+			4'd2:
+				iaddr <= {y_before, x_after};
+			4'd3:
+				iaddr <= {y, x_before};
+			4'd4:
+				iaddr <= {y, x};
+			4'd5:
+				iaddr <= {y, x_after};
+			4'd6:
+				iaddr <= {y_after, x_before};
+			4'd7:
+				iaddr <= {y_after, x};
+			4'd8:
+				iaddr <= {y_after, x_after};
+		endcase
 	end
 end
 
@@ -457,14 +384,16 @@ always @(posedge clk or posedge reset) begin
 	if(reset)
 		caddr_rd <= 12'd0;
 	else if (cur_state == READ_MAX_0 || cur_state == READ_MAX_1) begin
-		if(counter == 4'd0)
-			caddr_rd <= {y, x};
-		else if(counter == 4'd1)
-			caddr_rd <= {y, x_after};
-		else if(counter == 4'd2)
-			caddr_rd <= {y_after, x};
-		else if(counter == 4'd3)
-			caddr_rd <= {y_after, x_after};
+		case(counter)
+			4'd0:
+				caddr_rd <= {y, x};
+			4'd1:
+				caddr_rd <= {y, x_after};
+			4'd2:
+				caddr_rd <= {y_after, x};
+			4'd3:
+				caddr_rd <= {y_after, x_after};
+		endcase
 	end
 	else if(cur_state == READ_FLAT_0 || cur_state == READ_FLAT_1) begin
 		caddr_rd <= {y[5:1], x[5:1]};
@@ -485,31 +414,46 @@ always @(posedge clk or posedge reset) begin
 		caddr_wr <= {y_wr, x_wr} + 12'd1;
 end
 
+reg signed [19:0] idataTemp;
+wire signed [43:0] mulTemp;
+assign mulTemp = idataTemp * kernal;
+
 // conv_value
 always @(posedge clk or posedge reset) begin
 	if(reset)
 		conv_value <= 44'd0;
 	else if(cur_state == READ_CONV_0 || cur_state == READ_CONV_1) begin
-		if(counter == 4'd1 && (x != 6'd0 && y != 6'd0))
-			conv_value <= conv_value + idata * kernal;
-		else if(counter == 4'd2 && (y != 6'd0))
-			conv_value <= conv_value + idata * kernal;
-		else if(counter == 4'd3 && (x != 6'd63 && y != 6'd0))
-			conv_value <= conv_value + idata * kernal;
-		else if(counter == 4'd4 && (x != 6'd0))
-			conv_value <= conv_value + idata * kernal;
-		else if(counter == 4'd5)
-			conv_value <= conv_value + idata * kernal;
-		else if(counter == 4'd6 && (x != 6'd63))
-			conv_value <= conv_value + idata * kernal;
-		else if(counter == 4'd7 && (x != 6'd0 && y != 6'd63))
-			conv_value <= conv_value + idata * kernal;
-		else if(counter == 4'd8 && (y != 6'd63))
-			conv_value <= conv_value + idata * kernal;
-		else if(counter == 4'd9 && (x != 6'd63 && y != 6'd63))
-			conv_value <= conv_value + idata * kernal;						// conv_value is [43:0], conv_value[35:15] is 4 bits integer, 16 bits fraction, and last bit for rounding
-		else if(counter == 4'd10)
-			conv_value <= conv_value + {bias, 16'd0};						// bias is [19:0]. For calculation, conv_value[35:15] + {bias[35:16], 0}, so bias have to left shift 16 bits 0
+		idataTemp <= idata;
+		case(counter)
+			4'd2:
+				if(x != 6'd0 && y != 6'd0)
+					conv_value <= conv_value + mulTemp;
+			4'd3:
+				if(y != 6'd0)
+					conv_value <= conv_value + mulTemp;
+			4'd4:
+				if(x != 6'd63 && y != 6'd0)
+					conv_value <= conv_value + mulTemp;
+			4'd5:
+				if(x != 6'd0)
+					conv_value <= conv_value + mulTemp;
+			4'd6:
+					conv_value <= conv_value + mulTemp;
+			4'd7:
+				if(x != 6'd63)
+					conv_value <= conv_value + mulTemp;
+			4'd8:
+				if(x != 6'd0 && y != 6'd63)
+					conv_value <= conv_value + mulTemp;
+			4'd9:
+				if(y != 6'd63)
+					conv_value <= conv_value + mulTemp;
+			4'd10:
+				if(x != 6'd63 && y != 6'd63)
+					conv_value <= conv_value + mulTemp;
+			4'd11:															// conv_value is [43:0], conv_value[35:15] is 4 bits integer, 16 bits fraction, and last bit for rounding
+					conv_value <= conv_value + {bias, 16'd0};				// bias is [19:0]. For calculation, conv_value[35:15] + {bias[35:16], 0}, so bias have to left shift 16 bits 0
+		endcase
 	end
 	else if(cur_state == WRITE_CONV_0 || cur_state == WRITE_CONV_1) begin
 		conv_value <= 44'd0;
