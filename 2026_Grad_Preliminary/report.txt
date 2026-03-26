@@ -1,0 +1,21 @@
+
+FTP account:                       B26033
+
+Level:                             A
+Synthesis area:                    207232.170815
+Time:                              32438 + 32438
+Total mismatch points:             0
+CYCLE:                             25.0
+
+--- RTL category---
+HDL simulator :                    vcs
+RTL filename :                     REFRACT.v 
+
+--- Pre-layout gate-level ---
+gate-levelfilename:                REFRACT_syn.v  
+gate-level sdf filename:           REFRACT_syn.sdf        
+synthesis database:                REFRACT_syn.ddc        
+
+-----(annotation)--------------------------------------------------------
+ (optional, write down anything that you want raters know)
+ 我們的設計中有使用到 DesignWare, 在跑模擬時的指令可能需要要引用DesignWare進來, 謝謝.
